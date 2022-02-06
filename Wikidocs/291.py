@@ -1,0 +1,5 @@
+f = open("C:/Users/XronoCore/Desktop/매수종목2.txt","w", encoding = "utf8")
+f.write("005930 삼성전자\n")
+f.write("005380 현대차\n")
+f.write("035420 NAVER")
+f.close()
