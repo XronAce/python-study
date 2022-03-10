@@ -4,6 +4,8 @@ if N == 4:
     print(-1)
 elif N == 3:
     print(1)
+elif N == 7:
+    print(-1)
 else:
     if N % 5 == 0:
         print(N // 5)
