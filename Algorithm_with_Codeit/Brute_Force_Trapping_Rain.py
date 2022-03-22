@@ -8,7 +8,6 @@ def trapping_rain(buildings):
     tallest_leftover = 0
 
     for i in range(0, len(buildings)):
-        print(f"i == {i}")
         if buildings[i] != 0 and flag == 0:
             left_building = buildings[i]
             lb_index = i
@@ -18,7 +17,6 @@ def trapping_rain(buildings):
             rb_index = i
             for j in range(lb_index+1, rb_index):
                 trapped_rain += left_building - buildings[j]
-                print(f"trapped_rain added, result is {trapped_rain}")
             left_building = right_building
             lb_index = rb_index
         elif flag == 1:
@@ -26,7 +24,6 @@ def trapping_rain(buildings):
                 right_building = buildings[i]
                 tallest_leftover = buildings[i]
                 rb_index = i
-                print(f"rb_index = {rb_index}")
     
     for j in range(lb_index+1, rb_index):
         trapped_rain += right_building - buildings[j]
