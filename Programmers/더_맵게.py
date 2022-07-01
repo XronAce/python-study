@@ -1,13 +1,14 @@
+import heapq
+
 def solution(scoville, K):
     isAllOverK = 0
     answer = 0
+    heapq.heapify(scoville)
     while isAllOverK == 0:
-        scoville.sort(key=lambda x:x)
         if scoville[0] < K:
-            temp = scoville[0] + scoville[1] * 2
-            scoville.pop(0)
-            scoville.pop(0)
-            scoville.insert(0, temp)
+            a = heapq.heappop(scoville)
+            b = heapq.heappop(scoville)
+            heapq.heappush(scoville, a + b * 2)
             answer += 1
         for i in range(len(scoville)):
             if scoville[i] < K:
@@ -23,6 +24,8 @@ def solution(scoville, K):
     return answer
 
 """
-테스트 케이스는 다 통과했으나 효율성에서 통과를 못함.
-heapq를 써야 효율성을 통과할 수 있음.
+heapq module: binary tree 기반의 min heap 자료구조를 제공함.
+heapify(): 기존의 리스트를 heap으로 변환
+heappop(heap): 가장 작은 원소를 삭제 후 그 값을 리턴
+heappush(heap, element): element를 heap에 추가
 """
