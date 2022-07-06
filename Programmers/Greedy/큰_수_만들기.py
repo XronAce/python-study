@@ -4,9 +4,13 @@ def solution(number, k):
     while delCnt < k:
         for i in range(0, len(numlist)-1):
             if numlist[i] < numlist[i+1]:
-                numlist.pop(i)
+                numlist[i] = 10
                 delCnt += 1
-                break
+                if delCnt == k:
+                    break
+                
+    for i in range(0, k):
+        numlist.remove(10)
 
     answer = "".join(map(str, numlist))
     return answer
