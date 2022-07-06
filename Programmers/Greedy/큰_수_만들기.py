@@ -1,18 +1,18 @@
-def solution(number, k):
-    numlist = list(map(int, number))
-    delCnt = 0
-    while delCnt < k:
-        for i in range(0, len(numlist)-1):
-            if numlist[i] < numlist[i+1]:
-                numlist[i] = 10
-                delCnt += 1
-                if delCnt == k:
-                    break
-                
-    for i in range(0, k):
-        numlist.remove(10)
 
-    answer = "".join(map(str, numlist))
+def solution(number, k):
+    answer = number
+    length = len(number)
+    curLen = len(answer)
+
+    while len(answer) != length-k:
+        for i in range(0, len(answer)-1):
+            if answer[i] < answer[i+1]:
+                answer = answer[0:i] + answer[i+1:]
+                break
+        if len(answer) == curLen:
+            answer = answer[:-1]
+            curLen -= 1
+
     return answer
 
 ## Below is the bruteforcing method.
@@ -45,6 +45,6 @@ def solution(number, k):
 #     return answer
 
 
-number = "1231234"
+number = "9876543"
 k = 3
 print(solution(number, k))
