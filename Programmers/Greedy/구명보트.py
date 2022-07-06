@@ -1,21 +1,34 @@
+from collections import deque
+
 def solution(people, limit):
-    people.sort()
+    deq = deque(sorted(people))
+    
     boatCnt = 0
-    while people:
-        if len(people) == 1:
+    while deq:
+        if len(deq) == 1:
             boatCnt += 1
-            people.pop()
-        elif people[0] + people[-1] <= limit:
+            deq.pop()
+        elif deq[0] + deq[-1] <= limit:
             boatCnt += 1
-            people.pop()
-            people.pop(0)
+            deq.pop()
+            deq.popleft()
         else:
             boatCnt += 1
-            people.pop()
+            deq.pop()
     
     answer = boatCnt
     return answer
 
-people = [70, 50, 80, 50]
-limit = 100
-print(solution(people, limit))
+# people = [70, 50, 80, 50]
+# limit = 100
+# print(solution(people, limit))
+
+"""
+Using deque made it faster than using a list.
+This is because
+list.pop() -> O(1)
+list.pop(0) -> O(n)
+deque.pop() -> O(1)
+deque.popleft() -> O(1)
+So in case of popping leftmost element, deque is faster than list. 
+"""
