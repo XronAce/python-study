@@ -17,9 +17,14 @@ def solution(priorities, location):
     
     while deq:
         max_priority = 0
+        iteruntil = 0
         for i in range(0, len(deq)):
             max_priority = max(max_priority, num_priority[deq[i]])
-        for i in range(0, get_key(num_priority, max_priority)):
+        for i in range(0, len(deq)):
+            if max_priority == num_priority[deq[i]]:
+                iteruntil = i
+                break
+        for i in range(0, iteruntil):
             temp = deq[0]
             deq.popleft()
             deq.append(temp)
@@ -28,10 +33,12 @@ def solution(priorities, location):
 
     return printqueue.index(location) + 1
 
-priorities = [2, 1, 3, 2]
-location = 2
-print(solution(priorities, location))
+# priorities = [2, 1, 3, 2]
+# priorities = [2, 1, 2, 1, 2, 1, 2, 1, 2]
+# location = 2
+# location = 1
+# print(solution(priorities, location))
 
 """
-20/100, need to be fixed
+Done, a bit nasty
 """
