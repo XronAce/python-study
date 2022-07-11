@@ -1,6 +1,8 @@
+from collections import deque
+
 def solution(prices):
     answer = []
-    until = len(prices)
+    prices = deque(prices)
     while prices:
         priceChangeUntilDrop = [prices[0]]
         for i in range(1, len(prices)):
@@ -10,7 +12,7 @@ def solution(prices):
                 priceChangeUntilDrop.append(prices[i])
                 break
         answer.append(len(priceChangeUntilDrop)-1)
-        prices.pop(0)
+        prices.popleft()
 
     return answer
 
