@@ -1,20 +1,22 @@
-from collections import deque
-
 def solution(prices):
-    answer = []
-    prices = deque(prices)
-    while prices:
-        priceChangeUntilDrop = [prices[0]]
-        for i in range(1, len(prices)):
-            if priceChangeUntilDrop[0] <= prices[i]:
-                priceChangeUntilDrop.append(prices[i])
+    answer = [len(prices)-i-1 for i in range(len(prices))]
+    
+    stack = [0]
+    
+    for i in range(1, len(prices)):
+        while stack:
+            index = stack[-1]
+            
+            if prices[index] > prices[i]:
+                answer[index] = i - index
+                stack.pop()
+            
             else:
-                priceChangeUntilDrop.append(prices[i])
                 break
-        answer.append(len(priceChangeUntilDrop)-1)
-        prices.popleft()
-
+        
+        stack.append(i)
+        
     return answer
 
-prices = [1, 2, 3, 2, 3]
-print(solution(prices))
+# prices = [1, 2, 3, 2, 3]
+# print(solution(prices))
